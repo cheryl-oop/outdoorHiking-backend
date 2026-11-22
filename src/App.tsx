@@ -1,10 +1,12 @@
-import { useState } from "react";
-import "./App.css";
+import { router } from "./router/router.tsx";
+import { RouterProvider } from "react-router";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <></>;
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;
