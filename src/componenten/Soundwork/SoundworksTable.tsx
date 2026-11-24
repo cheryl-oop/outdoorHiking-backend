@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Soundwork } from "../../types/Soundwork";
-import { supabase } from "../../supabaseClient";
+import { getSoundworks } from "../../api/soundworks";
 import "./Soundworks.css";
 
 export const SoundworksTable = () => {
@@ -8,19 +8,11 @@ export const SoundworksTable = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  async function loadSoundworks() {
-    const { data, error } = await supabase
-      .from("soundworks")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    if (error) setError(error.message);
-    else setSoundworks(data as Soundwork[]);
-    setLoading(false);
-  }
-
   useEffect(() => {
-    loadSoundworks();
+    getSoundworks()
+      .then(setSoundworks)
+      .catch((err: Error) => setError(err.message))
+      .finally(() => setLoading(false));
   }, []);
 
   function formatDuration(seconds: number) {
