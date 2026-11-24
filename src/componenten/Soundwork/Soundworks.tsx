@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Soundwork } from "../../types/Soundwork";
 import { supabase } from "../../supabaseClient";
+import "./Soundworks.css";
 
 export const Soundworks = () => {
   const [soundworks, setSoundworks] = useState<Soundwork[]>([]);
@@ -37,6 +38,7 @@ export const Soundworks = () => {
         <table>
           <thead>
             <tr>
+              <th>Number</th>
               <th>Title</th>
               <th>Artist</th>
               <th>Length</th>
@@ -48,6 +50,7 @@ export const Soundworks = () => {
           <tbody>
             {soundworks.map((sw) => (
               <tr key={sw.id}>
+                <td>{sw.sound_number}</td>
                 <td>{sw.title}</td>
                 <td>{sw.artist ?? "-"}</td>
                 <td>{formatDuration(sw.duration_s)}</td>
