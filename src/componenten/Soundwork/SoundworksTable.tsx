@@ -63,8 +63,8 @@ export const SoundworksTable = () => {
                   {sw.lat.toFixed(4)}, {sw.lng.toFixed(4)}
                 </td>
                 <td>
-                  <button onClick={() => handleDelete(sw)}>Delete</button>
                   <Link to={`/soundworks/${sw.id}/edit`}>Edit</Link>
+                  <button onClick={() => handleDelete(sw)}>Delete</button>
                 </td>
               </tr>
             ))}

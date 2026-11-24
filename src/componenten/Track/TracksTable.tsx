@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-
 import { getTracks, deleteTrack } from "../../api/tracks";
 import type { TrackListItem } from "../../api/tracks";
+import { Link } from "react-router";
 
 export default function TracksTable() {
   const [tracks, setTracks] = useState<TrackListItem[]>([]);
@@ -51,6 +51,7 @@ export default function TracksTable() {
                 <td>{t.duration_min}</td>
                 <td>{t.track_soundworks[0]?.count ?? 0}</td>
                 <td>
+                  <Link to={`/tracks/${t.id}/edit`}>Edit</Link>
                   <button onClick={() => handleDelete(t)}>Delete</button>
                 </td>
               </tr>
