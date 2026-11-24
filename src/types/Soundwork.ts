@@ -10,4 +10,5 @@ export type Soundwork = {
   description: string | null;
   image_url: string | null;
   created_at: string;
+  sound_number: number;
 };
