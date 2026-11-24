@@ -31,6 +31,7 @@ export default function TracksTable() {
       {loading && <p>Loading...</p>}
       {!loading && tracks.length === 0 && <p>No tracks yet.</p>}
 
+      <Link to="/tracks/new">Add track</Link>
       {tracks.length > 0 && (
         <table>
           <thead>

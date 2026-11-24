@@ -36,7 +36,8 @@ export const SoundworksTable = () => {
       {error && <p className="error">{error}</p>}
       {loading && <p>Loading...</p>}
       {!loading && soundworks.length === 0 && <p>No soundworks yet.</p>}
-      <Link to={"/soundworks/add"}>Add</Link>
+
+      <Link to={"/soundworks/add"}>Add Soundwork</Link>
 
       {soundworks.length > 0 && (
         <table>

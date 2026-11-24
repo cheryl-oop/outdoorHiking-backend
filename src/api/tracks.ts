@@ -48,9 +48,9 @@ export async function deleteTrack(id: string): Promise<void> {
 // Soundworks in tracks resetten and replacing with new soundtracks (for add and edit tracks!!!)
 async function setTrackSoundworks(trackId: string, soundworkIds: string[]) {
   const { error: deleteError } = await supabase
-    .from('track_soundworks')
+    .from("track_soundworks")
     .delete()
-    .eq('track_id', trackId);
+    .eq("track_id", trackId);
   if (deleteError) throw deleteError;
 
   if (soundworkIds.length === 0) return;
@@ -60,16 +60,40 @@ async function setTrackSoundworks(trackId: string, soundworkIds: string[]) {
     soundwork_id,
     position: i + 1,
   }));
-  const { error: insertError } = await supabase.from('track_soundworks').insert(rows);
+  const { error: insertError } = await supabase
+    .from("track_soundworks")
+    .insert(rows);
   if (insertError) throw insertError;
 }
 
 // edit track
-export async function updateTrack(id: string, input: TrackInput, soundworkIds: string[]): Promise<void> {
-  const { data, error } = await supabase.from('tracks').update(input).eq('id', id).select();
+export async function updateTrack(
+  id: string,
+  input: TrackInput,
+  soundworkIds: string[],
+): Promise<void> {
+  const { data, error } = await supabase
+    .from("tracks")
+    .update(input)
+    .eq("id", id)
+    .select();
   if (error) throw error;
-  if (!data || data.length === 0) throw new Error('Nothing was updated (check permissions).');
+  if (!data || data.length === 0)
+    throw new Error("Nothing was updated (check permissions).");
 
   await setTrackSoundworks(id, soundworkIds);
 }
 // add track
+export async function addTrack(
+  input: TrackInput,
+  soundworkIds: string[],
+): Promise<void> {
+  const { data, error } = await supabase
+    .from("tracks")
+    .insert(input)
+    .select()
+    .single();
+  if (error) throw error;
+
+  await setTrackSoundworks(data.id, soundworkIds);
+}

@@ -5,7 +5,7 @@ import { Homepage } from "../pages/Homepage.tsx";
 import { EditSoundwork } from "../pages/EditSoundwork.tsx";
 import { AddSoundwork } from "../pages/AddSoundwork.tsx";
 import { EditTrack } from "../pages/EditTrack.tsx";
-
+import { AddTrack } from "../pages/AddTrack.tsx";
 
 async function requireLogin() {
   const { data } = await supabase.auth.getSession();
@@ -26,6 +26,7 @@ export const router = createBrowserRouter(
       element: <AddSoundwork />,
       loader: requireLogin,
     },
+    { path: "/tracks/new", element: <AddTrack />, loader: requireLogin },
     { path: "/tracks/:id/edit", element: <EditTrack />, loader: requireLogin },
   ],
   {
