@@ -14,7 +14,18 @@ export async function getSoundworks(): Promise<Soundwork[]> {
   return data as Soundwork[];
 }
 
-// Delete Soundwork out the table (using id)µ
+//Get one soundwork
+export async function getSoundwork(id: string): Promise<Soundwork> {
+  const { data, error } = await supabase
+    .from("soundworks")
+    .select("*")
+    .eq("id", id)
+    .single();
+  if (error) throw error;
+  return data as Soundwork;
+}
+
+// Delete Soundwork out the table (using id)
 export async function deleteSoundwork(id: string): Promise<void> {
   const { data, error } = await supabase
     .from("soundworks")
@@ -24,5 +35,19 @@ export async function deleteSoundwork(id: string): Promise<void> {
   if (error) throw error;
   if (!data) throw new Error("Nothing was deleted");
 }
-// Add Soundwork (will need a form)
 // Updates Soundwork (will need a form)
+export async function updateSoundwork(
+  id: string,
+  input: Partial<SoundworkInput>,
+): Promise<Soundwork> {
+  const { data, error } = await supabase
+    .from("soundworks")
+    .update(input)
+    .eq("id", id)
+    .select();
+  if (error) throw error;
+  if (!data || data.length === 0)
+    throw new Error("Nothing was updated (check permissions).");
+  return data[0] as Soundwork;
+}
+// Add Soundwork (will need a form)
