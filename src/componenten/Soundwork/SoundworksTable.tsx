@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Soundwork } from "../../types/Soundwork";
-import { getSoundworks } from "../../api/soundworks";
-import "./Soundworks.css";
+import { getSoundworks, deleteSoundwork } from "../../api/soundworks";
+import "./SoundworksTable.css";
 
 export const SoundworksTable = () => {
   const [soundworks, setSoundworks] = useState<Soundwork[]>([]);
@@ -14,6 +14,16 @@ export const SoundworksTable = () => {
       .catch((err: Error) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
+
+  async function handleDelete(sw: Soundwork) {
+    if (!confirm(`Delete "${sw.title}"?`)) return;
+    try {
+      await deleteSoundwork(sw.id);
+      setSoundworks((prev) => prev.filter((s) => s.id !== sw.id));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Delete failed");
+    }
+  }
 
   function formatDuration(seconds: number) {
     const m = Math.floor(seconds / 60);
@@ -49,6 +59,9 @@ export const SoundworksTable = () => {
                 <td>{sw.radius_m} m</td>
                 <td>
                   {sw.lat.toFixed(4)}, {sw.lng.toFixed(4)}
+                </td>
+                <td>
+                  <button onClick={() => handleDelete(sw)}>Delete</button>
                 </td>
               </tr>
             ))}
