@@ -51,3 +51,13 @@ export async function updateSoundwork(
   return data[0] as Soundwork;
 }
 // Add Soundwork (will need a form)
+
+export async function addSoundwork(input: SoundworkInput): Promise<Soundwork> {
+  const { data, error } = await supabase
+    .from("soundworks")
+    .insert(input)
+    .select()
+    .single();
+  if (error) throw error;
+  return data as Soundwork;
+}

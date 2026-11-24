@@ -36,6 +36,7 @@ export const SoundworksTable = () => {
       {error && <p className="error">{error}</p>}
       {loading && <p>Loading...</p>}
       {!loading && soundworks.length === 0 && <p>No soundworks yet.</p>}
+      <Link to={"/soundworks/add"}>Add</Link>
 
       {soundworks.length > 0 && (
         <table>
@@ -63,8 +64,6 @@ export const SoundworksTable = () => {
                 </td>
                 <td>
                   <button onClick={() => handleDelete(sw)}>Delete</button>
-                </td>
-                <td>
                   <Link to={`/soundworks/${sw.id}/edit`}>Edit</Link>
                 </td>
               </tr>

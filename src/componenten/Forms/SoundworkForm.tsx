@@ -49,7 +49,7 @@ export const SoundworkForm = ({ initial, submitLabel, onSubmit }: Props) => {
       <input
         placeholder="Number of soundwork"
         value={sound_number}
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={(e) => setsound_number(e.target.value)}
         required
       />
       <input
