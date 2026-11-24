@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { getSoundwork, updateSoundwork } from "../api/soundworks";
 import type { Soundwork } from "../types/Soundwork";
+import { SoundworkForm } from "../componenten/Forms/SoundworkForm";
 
 export const EditSoundwork = () => {
   const { id } = useParams<{ id: string }>();
@@ -22,7 +23,14 @@ export const EditSoundwork = () => {
   return (
     <section className="dashboard">
       <h1>Edit soundwork</h1>
-      <p>Form here</p>
+      <SoundworkForm
+        initial={soundwork}
+        submitLabel="Save changes"
+        onSubmit={async (values) => {
+          await updateSoundwork(soundwork.id, values);
+          navigate("/");
+        }}
+      />
     </section>
   );
 };

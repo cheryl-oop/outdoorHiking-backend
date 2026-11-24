@@ -13,7 +13,11 @@ export const router = createBrowserRouter(
   [
     { path: "/login", element: <Login /> },
     { path: "/", element: <Homepage />, loader: requireLogin },
-    { path: "/editsoundwork", element: <EditSoundwork /> },
+    {
+      path: "/soundworks/:id/edit",
+      element: <EditSoundwork />,
+      loader: requireLogin,
+    },
   ],
   {
     basename: import.meta.env.BASE_URL,

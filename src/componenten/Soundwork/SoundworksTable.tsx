@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Soundwork } from "../../types/Soundwork";
 import { getSoundworks, deleteSoundwork } from "../../api/soundworks";
+import { Link } from "react-router";
 import "./SoundworksTable.css";
 
 export const SoundworksTable = () => {
@@ -62,6 +63,9 @@ export const SoundworksTable = () => {
                 </td>
                 <td>
                   <button onClick={() => handleDelete(sw)}>Delete</button>
+                </td>
+                <td>
+                  <Link to={`/soundworks/${sw.id}/edit`}>Edit</Link>
                 </td>
               </tr>
             ))}
