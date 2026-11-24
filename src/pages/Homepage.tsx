@@ -1,5 +1,5 @@
 import { Header } from "../componenten/Layout/Header";
-import { Soundworks } from "../componenten/Soundwork/Soundworks";
+import { SoundworksTable } from "../componenten/Soundwork/SoundworksTable";
 
 export const Homepage = () => {
   return (
@@ -7,7 +7,7 @@ export const Homepage = () => {
       <Header />
       <section className="dashboard">
         <h1>Dashboard</h1>
-        <Soundworks />
+        <SoundworksTable />
       </section>
     </>
   );

@@ -3,7 +3,7 @@ import type { Soundwork } from "../../types/Soundwork";
 import { supabase } from "../../supabaseClient";
 import "./Soundworks.css";
 
-export const Soundworks = () => {
+export const SoundworksTable = () => {
   const [soundworks, setSoundworks] = useState<Soundwork[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
