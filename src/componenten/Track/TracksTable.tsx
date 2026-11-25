@@ -31,7 +31,10 @@ export default function TracksTable() {
       {loading && <p>Loading...</p>}
       {!loading && tracks.length === 0 && <p>No tracks yet.</p>}
 
-      <Link to="/tracks/new">Add track</Link>
+      <h2>Tracks</h2>
+      <Link className="btn btn-blue" to="/tracks/new">
+        + Add track
+      </Link>
       {tracks.length > 0 && (
         <table>
           <thead>
@@ -52,8 +55,15 @@ export default function TracksTable() {
                 <td>{t.duration_min}</td>
                 <td>{t.track_soundworks[0]?.count ?? 0}</td>
                 <td>
-                  <Link to={`/tracks/${t.id}/edit`}>Edit</Link>
-                  <button onClick={() => handleDelete(t)}>Delete</button>
+                  <Link className="btn btn-green" to={`/tracks/${t.id}/edit`}>
+                    Edit
+                  </Link>
+                  <button
+                    className="btn btn-red"
+                    onClick={() => handleDelete(t)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

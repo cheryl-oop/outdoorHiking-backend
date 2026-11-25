@@ -29,7 +29,7 @@ export const EditTrack = () => {
   if (!track || !soundworks) return <p>Loading...</p>;
 
   return (
-    <div className="dashboard">
+    <div className="form-page">
       <h1>Edit track</h1>
       <TrackForm
         initial={track}

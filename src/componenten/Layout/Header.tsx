@@ -9,10 +9,11 @@ export const Header = () => {
     navigate("/login");
   }
   return (
-    <>
-      <Link to="/login" onClick={logout}>
+    <header>
+      <h1>Dashboard</h1>
+      <Link className="logout" to="/login" onClick={logout}>
         Log out
       </Link>
-    </>
+    </header>
   );
 };

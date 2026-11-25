@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { getSoundwork, updateSoundwork } from "../api/soundworks";
 import type { Soundwork } from "../types/Soundwork";
 import { SoundworkForm } from "../componenten/Forms/SoundworkForm";
+import { deleteAudio } from "../api/storage";
 
 export const EditSoundwork = () => {
   const { id } = useParams<{ id: string }>();
@@ -21,16 +22,19 @@ export const EditSoundwork = () => {
   if (!soundwork) return <p>Loading...</p>;
 
   return (
-    <section className="dashboard">
+    <div className="form-page">
       <h1>Edit soundwork</h1>
       <SoundworkForm
         initial={soundwork}
         submitLabel="Save changes"
         onSubmit={async (values) => {
           await updateSoundwork(soundwork.id, values);
+          if (values.audio_url !== soundwork.audio_url) {
+            await deleteAudio(soundwork.audio_url).catch(() => {});
+          }
           navigate("/");
         }}
       />
-    </section>
+    </div>
   );
 };

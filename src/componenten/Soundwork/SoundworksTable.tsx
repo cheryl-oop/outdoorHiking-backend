@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Soundwork } from "../../types/Soundwork";
 import { getSoundworks, deleteSoundwork } from "../../api/soundworks";
 import { Link } from "react-router";
+import { deleteAudio } from "../../api/storage";
 import "./SoundworksTable.css";
 
 export const SoundworksTable = () => {
@@ -20,6 +21,7 @@ export const SoundworksTable = () => {
     if (!confirm(`Delete "${sw.title}"?`)) return;
     try {
       await deleteSoundwork(sw.id);
+      await deleteAudio(sw.audio_url).catch(() => {});
       setSoundworks((prev) => prev.filter((s) => s.id !== sw.id));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Delete failed");
@@ -36,8 +38,10 @@ export const SoundworksTable = () => {
       {error && <p className="error">{error}</p>}
       {loading && <p>Loading...</p>}
       {!loading && soundworks.length === 0 && <p>No soundworks yet.</p>}
-
-      <Link to={"/soundworks/add"}>Add Soundwork</Link>
+      <h2>Soundworks</h2>
+      <Link className="btn btn-blue" to={"/soundworks/add"}>
+        + Add Soundwork
+      </Link>
 
       {soundworks.length > 0 && (
         <table>
@@ -64,8 +68,18 @@ export const SoundworksTable = () => {
                   {sw.lat.toFixed(4)}, {sw.lng.toFixed(4)}
                 </td>
                 <td>
-                  <Link to={`/soundworks/${sw.id}/edit`}>Edit</Link>
-                  <button onClick={() => handleDelete(sw)}>Delete</button>
+                  <Link
+                    className="btn btn-green"
+                    to={`/soundworks/${sw.id}/edit`}
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    className="btn btn-red"
+                    onClick={() => handleDelete(sw)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}

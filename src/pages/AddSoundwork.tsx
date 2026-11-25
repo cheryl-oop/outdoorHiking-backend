@@ -6,7 +6,7 @@ export const AddSoundwork = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="dashboard">
+    <div className="form-page">
       <h1>Add soundwork</h1>
       <SoundworkForm
         submitLabel="Add soundwork"

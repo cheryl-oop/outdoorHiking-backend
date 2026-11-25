@@ -20,7 +20,7 @@ export const AddTrack = () => {
   if (!soundworks) return <p>Loading...</p>;
 
   return (
-    <div className="dashboard">
+    <div className="form-page">
       <h1>Add track</h1>
       <TrackForm
         allSoundworks={soundworks}

@@ -7,7 +7,6 @@ export const Homepage = () => {
     <>
       <Header />
       <section className="dashboard">
-        <h1>Dashboard</h1>
         <SoundworksTable />
         <TracksTable />
       </section>
