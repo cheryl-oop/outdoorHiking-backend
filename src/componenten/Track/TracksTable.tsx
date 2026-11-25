@@ -27,14 +27,13 @@ export default function TracksTable() {
 
   return (
     <>
-      {error && <p className="error">{error}</p>}
-      {loading && <p>Loading...</p>}
-      {!loading && tracks.length === 0 && <p>No tracks yet.</p>}
-
       <h2>Tracks</h2>
       <Link className="btn btn-blue" to="/tracks/new">
         + Add track
       </Link>
+      {error && <p className="error">{error}</p>}
+      {loading && <p>Loading...</p>}
+      {!loading && tracks.length === 0 && <p>No tracks yet.</p>}
       {tracks.length > 0 && (
         <table>
           <thead>

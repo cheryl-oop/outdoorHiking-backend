@@ -35,13 +35,13 @@ export const SoundworksTable = () => {
   }
   return (
     <>
-      {error && <p className="error">{error}</p>}
-      {loading && <p>Loading...</p>}
-      {!loading && soundworks.length === 0 && <p>No soundworks yet.</p>}
       <h2>Soundworks</h2>
       <Link className="btn btn-blue" to={"/soundworks/add"}>
         + Add Soundwork
       </Link>
+      {error && <p className="error">{error}</p>}
+      {loading && <p>Loading...</p>}
+      {!loading && soundworks.length === 0 && <p>No soundworks yet.</p>}
 
       {soundworks.length > 0 && (
         <table>
