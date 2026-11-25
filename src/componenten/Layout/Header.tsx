@@ -10,7 +10,7 @@ export const Header = () => {
   }
   return (
     <header>
-      <h1>Dashboard</h1>
+      <h1>Dashboard Park Den Brandt</h1>
       <Link className="logout" to="/login" onClick={logout}>
         Log out
       </Link>

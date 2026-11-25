@@ -139,9 +139,10 @@ export const TrackForm = ({
         <ul className="picker-list">
           {available.map((s) => (
             <li key={s.id}>
+              <p>{s.sound_number}</p>
               <span>{s.title}</span>
               <button
-              className="btn btn-blue"
+                className="btn btn-blue"
                 type="button"
                 onClick={() => setSelectedIds((prev) => [...prev, s.id])}
               >
