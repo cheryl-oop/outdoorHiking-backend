@@ -106,6 +106,7 @@ export const TrackForm = ({
             <li key={id}>
               <span>{byId.get(id)?.title ?? "Unknown soundwork"}</span>
               <button
+                className="btn btn-green"
                 type="button"
                 onClick={() => move(index, -1)}
                 disabled={index === 0}
@@ -113,6 +114,7 @@ export const TrackForm = ({
                 ↑
               </button>
               <button
+                className="btn btn-green"
                 type="button"
                 onClick={() => move(index, 1)}
                 disabled={index === selectedIds.length - 1}
@@ -120,6 +122,7 @@ export const TrackForm = ({
                 ↓
               </button>
               <button
+                className="btn btn-red"
                 type="button"
                 onClick={() =>
                   setSelectedIds((prev) => prev.filter((x) => x !== id))
